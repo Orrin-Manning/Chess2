@@ -30,9 +30,11 @@ def main():
     for i in range(2):
         board_sprite = pygame.transform.scale2x(board_sprite)
     board_size = np.array(board_sprite.get_size())
+
+    # Create board bounds as sub-surface of board
     board_bounds_size = np.array(board_sprite.get_size()) * .995
-    # TODO: Board bounds as sub-surface of board sprite
     board_bounds = board_sprite.subsurface((0,0), board_bounds_size)
+    # TODO: Fill board bounds with red transparency
     board_bounds.set_colorkey(red)
     board_bounds.set_alpha(20)
     board_bounds.fill(red)
