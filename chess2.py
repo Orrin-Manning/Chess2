@@ -3,7 +3,7 @@ import numpy as np
 import sys, pygame
 from pygame.locals import *
 
-SCREENRECT = pygame.Rect(0, 0, 800, 600)
+SCREENSIZE = (400, 400)
 black = (0, 0, 0)
 white = (255, 255, 255)
 red = (255, 0, 0)
@@ -12,24 +12,24 @@ def main():
     # Initialize pygame module
     pygame.init()
 
+    # Create the screen
+    # TODO: Investigate these settings
+    winstyle = 0
+    bestdepth = pygame.display.mode_ok(SCREENSIZE, winstyle, 32)
+    screen = pygame.display.set_mode(SCREENSIZE, winstyle, bestdepth)
+
 	# Load/scale board image and get its size
     board_sprite = pygame.image.load('assets/board.png')
-    for i in range(2):
-        board_sprite = pygame.transform.scale2x(board_sprite)
-    board_size = np.array(board_sprite.get_size())
-
-    # Create the screen
-    winstyle = 0
-    bestdepth = pygame.display.mode_ok(board_size, winstyle, 32)
-    screen = pygame.display.set_mode(board_size, winstyle, bestdepth)
+    board_size = SCREENSIZE
+    board_sprite = pygame.transform.scale(board_sprite, board_size)
 
     # Create board bounds as sub-surface of board
     board_bounds_size = np.array(board_sprite.get_size()) * .995
     board_bounds = board_sprite.subsurface((0,0), board_bounds_size)
     # TODO: Fill board bounds with red transparency
-    board_bounds.set_colorkey(red)
-    board_bounds.set_alpha(20)
-    board_bounds.fill(red)
+    # board_bounds.set_colorkey(red)
+    # board_bounds.set_alpha(20)
+    # board_bounds.fill(red)
 
     # TODO: Squares as sub-surfaces of board bounds
     # square_size = board_size * 0.125
