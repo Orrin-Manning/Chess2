@@ -4,9 +4,9 @@ import sys, pygame
 from pygame.locals import *
 
 SCREENSIZE = (400, 400)
-black = (0, 0, 0)
-white = (255, 255, 255)
-red = (255, 0, 0)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
 
 def main():
     # Initialize pygame module
@@ -24,12 +24,15 @@ def main():
     board_sprite = pygame.transform.scale(board_sprite, board_size)
 
     # Create board bounds as sub-surface of board
-    board_bounds_size = np.array(board_sprite.get_size()) * .995
-    board_bounds = board_sprite.subsurface((0,0), board_bounds_size)
+    board_bounds = pygame.Surface((400, 400))
     # TODO: Fill board bounds with red transparency
-    # board_bounds.set_colorkey(red)
-    # board_bounds.set_alpha(20)
-    # board_bounds.fill(red)
+    board_bounds.fill(RED)
+    board_bounds.set_alpha(50)
+    # Draw board_bounds on board
+    board_sprite.blit(board_bounds, (0, 0))
+    # Erase the surface
+    board_bounds.set_colorkey(WHITE)
+    board_bounds.fill(WHITE)
 
     # TODO: Squares as sub-surfaces of board bounds
     # square_size = board_size * 0.125
