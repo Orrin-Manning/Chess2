@@ -14,11 +14,6 @@ def get_bounds_rect(board_size):
     bounds_rect = pygame.Rect(margins, dimensions)
     return bounds_rect
 
-def get_margins(board_size):
-    margins = np.array(board_size) * 0.0125
-    print(margins)
-    return margins
-
 def main():
     # Initialize pygame module
     pygame.init()
