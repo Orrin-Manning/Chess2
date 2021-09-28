@@ -8,6 +8,11 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 
+def get_margins(board_size):
+    margins = np.array(board_size) * 0.0125
+    print(margins)
+    return margins
+
 def main():
     # Initialize pygame module
     pygame.init()
